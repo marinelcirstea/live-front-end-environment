@@ -1,0 +1,117 @@
+.widthWrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 4.5rem;
+  position: relative;
+  padding: 0 2rem;
+}
+.pageTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 2rem auto;
+  padding: 0 0 1rem 0;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.create {
+  border-radius: 4px;
+  background-color: blue;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  align-items: start;
+  justify-items: center;
+  grid-gap: 3rem 3rem;
+}
+@media (min-width: 1101px) {
+  .projects {
+    /* grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); */
+    /* max-width: 100%; */
+    grid-template-columns: repeat(2, minmax(0, 50%));
+    grid-gap: 4.5rem 3rem;
+  }
+}
+
+.project {
+  display: grid;
+  grid:
+    /* "preview" minmax(56.25%, auto)
+    "content" auto/minmax(0, 100%); */
+    "preview" minmax(56.25%, auto)
+    "content" auto/minmax(0, 100%);
+  /* color: var(--cp-color-11); */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgb(32, 32, 32);
+  /* padding: 0.75rem; */
+  border-radius: 3px;
+}
+
+.footer {
+  grid-area: content;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.name {
+  font-size: 16px;
+  font-weight: 500;
+}
+.projectActions {
+  display: flex;
+  column-gap: 0.5rem;
+}
+.projectActions a {
+  padding: 5px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: blue;
+  border-radius: 3px;
+}
+
+.previewContainer {
+  grid-area: preview;
+
+  opacity: 0.99;
+  position: relative;
+  border-radius: 6px 6px 0 0;
+  overflow: hidden;
+  display: grid;
+  align-items: stretch;
+}
+.previewIframe {
+  padding-top: 56.25%;
+  /* background: var(--cp-color-13); */
+  background-color: white;
+  position: relative;
+}
+.preview {
+  width: calc(200% + 5px);
+  height: calc(200% + 5px);
+  /* width: 300%; */
+  /* height: 300%; */
+  border: 0;
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  /* background: var(--cp-color-1); */
+  /* transform: scale(0.375); */
+  transform: scale(0.5);
+  transform-origin: top left;
+  /* opacity: 0; */
+  transition: opacity 0.4s linear 0.1s;
+}

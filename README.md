@@ -1,34 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Static projects
 
-## Getting Started
+I know.. I had no inspiration. I was thinking about codepence at some point, but that just sounds cheaper than PoundLand.
 
-First, run the development server:
+## What's this?
 
-```bash
-npm run dev
-# or
-yarn dev
+A mini clone of codepen.io
+
+## Why?
+
+Because I find it easier to store my projects/components in a single place and then just come back to them and copy-paste whatever I want.
+
+## HOW?
+
+```sh
+git clone git@github.com:marinelcirstea/live-front-end-environment.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```sh
+npm install
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
+Make sure you have a firebase and mongodb atlas account.
+Create a file called '.env.local'
+Copy-paste what's in '.env.local.example' and fill the info with your details
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```sh
+npm run dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## NOTES
 
-## Learn More
+```
+[1] NOT TESTED IN PRODUCTION YET!
+```
 
-To learn more about Next.js, take a look at the following resources:
+```
+[2] THIS IS JUST THE PROTOTYPE, LOTS OF CHANGES ARE COMING IN THE FUTURE
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Near Future
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+[1] A way to take png/jpg/svg snapshots of the DOM
+and upload them to firebase storage(google cloud storage bucket).
 
-## Deploy on Vercel
+I'm thinking about replacing the iframes with images
+and just add a button to see the component live in a modal,
+(pointless to load the editor if you just want to see it)
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+[2] Head options (like the css base, normalize.css, reset.css, etc)
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+[3] A way to "install" js modules. I might just add them as script tags(seems less of a headache), but we'll see.
+```

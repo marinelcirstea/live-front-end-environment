@@ -1,10 +1,12 @@
-# Static projects
+# Live front-end env
 
 I know.. I had no inspiration. I was thinking about codepence at some point, but that just sounds cheaper than PoundLand.
 
 ## What's this?
 
-A mini clone of codepen.io
+A front-end development environment with Monaco Editor(vs-code base).(something like codepen).
+
+It currently supports working with html, css and js(I know, I know.. ts is coming soon..)
 
 ## Why?
 

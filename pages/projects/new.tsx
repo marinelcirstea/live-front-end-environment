@@ -3,6 +3,7 @@ import { useAuth } from "contexts/auth-context";
 import { useToast } from "contexts/toast-context";
 import captain from "lib/captain";
 import router from "next/router";
+import { IProject } from "types";
 
 function NewProjectPage() {
   const { user } = useAuth();

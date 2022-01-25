@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
+import { KeysOfModel } from "types";
 import { initialState } from "./initial-state";
 
 const EditorStateContext = createContext<{ state: State; dispatch: Dispatch } | undefined>(

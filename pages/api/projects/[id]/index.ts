@@ -1,11 +1,9 @@
-import { NextApiRequest, NextApiResponse } from "next";
-
 import { extractProjectEntity } from "lib/project-entity";
 import dbConnect from "services/dbConnect";
 import Project from "models/project-model";
-import { IProjectModel } from "types";
+import type { NextApiHandler } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+const handler: NextApiHandler = async (req: any, res: any) => {
   await dbConnect();
 
   const id = req.query.id;
@@ -62,4 +60,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   return res.status(500);
-}
+};
+
+export default handler;

@@ -1,11 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiHandler } from "next";
 
 import { extractProjectEntity } from "lib/project-entity";
 import dbConnect from "services/dbConnect";
 import Project from "models/project-model";
-import { IProjectModel } from "types";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+const handler: NextApiHandler = async (req: any, res: any) => {
   await dbConnect();
 
   switch (req.method) {
@@ -37,4 +36,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     default:
       return res.status(405);
   }
-}
+};
+
+export default handler;

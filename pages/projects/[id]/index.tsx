@@ -5,7 +5,7 @@ import router, { useRouter } from "next/router";
 import captain from "lib/captain";
 import { useAuth } from "contexts/auth-context";
 import { getProject } from "lib/project-utils";
-import { IProjectModel } from "types";
+import { useEditor } from "contexts/editor-context";
 
 function EditProjectPage() {
   const [project, setProject] = useState<IProjectModel>(null);
@@ -52,9 +52,14 @@ function EditProjectPage() {
   // wait for the project to be fetched
   if (!project) return "Loading..";
 
-  const { html, css, javascript } = project;
+  const { setFilesContent } = useEditor();
 
-  return <EditorComponent data={{ html, css, javascript }} onSave={handleSave} />;
+  useEffect(() => {
+    const { html, css, javascript } = project;
+    setFilesContent({ html, css, javascript });
+  }, [project]);
+
+  return <EditorComponent onSave={handleSave} />;
 }
 
 export default EditProjectPage;

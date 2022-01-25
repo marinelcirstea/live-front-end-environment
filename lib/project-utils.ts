@@ -1,4 +1,3 @@
-import { IProjectModel } from "types";
 import captain from "./captain";
 
 export const getProject = async (id: string): Promise<{ data: IProjectModel; ok: boolean }> => {

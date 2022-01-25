@@ -18,7 +18,7 @@ const Features = () => {
                 You can use it to create components for your application.
               </p>
 
-              <NavLink href="/components/new">Create</NavLink>
+              <NavLink href="/projects/new">Create</NavLink>
             </div>
           </div>
         </div>

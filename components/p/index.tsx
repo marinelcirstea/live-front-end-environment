@@ -3,7 +3,7 @@ import s from "./style.module.css";
 
 const Project = ({ id, name, iframeUrl }) => {
   return (
-    <article className={s.project} key={id}>
+    <article className={s.project}>
       <div className={s.previewContainer} id={id}>
         <div className={s.previewIframe}>
           <iframe scrolling="no" src={iframeUrl} className={s.preview}></iframe>

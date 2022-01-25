@@ -30,7 +30,7 @@ function AllComponentsPage() {
           projects.map((project) => {
             const { _id, name, html, css, javascript } = project;
             const url = getGeneratedPageURL({ html, css, javascript });
-            return <Project id={_id} name={name} iframeUrl={url} />;
+            return <Project key={_id} id={_id} name={name} iframeUrl={url} />;
           })}
       </PList>
     </>

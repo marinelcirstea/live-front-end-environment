@@ -12,6 +12,7 @@ function EditProjectPage() {
   const { id } = useRouter().query;
   const { user } = useAuth();
   const toast = useToast();
+  const { setFilesContent } = useEditor();
 
   useEffect(() => {
     if (!id) return;
@@ -23,6 +24,13 @@ function EditProjectPage() {
       setProject(data);
     })();
   }, [id]);
+
+  useEffect(() => {
+    if (project) {
+      const { html, css, javascript } = project;
+      setFilesContent({ html, css, javascript });
+    }
+  }, [project]);
 
   const handleSave = async (filesData) => {
     if (!user) {
@@ -51,13 +59,6 @@ function EditProjectPage() {
 
   // wait for the project to be fetched
   if (!project) return "Loading..";
-
-  const { setFilesContent } = useEditor();
-
-  useEffect(() => {
-    const { html, css, javascript } = project;
-    setFilesContent({ html, css, javascript });
-  }, [project]);
 
   return <EditorComponent onSave={handleSave} />;
 }

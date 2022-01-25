@@ -4,45 +4,34 @@ import { useEffect, useState } from "react";
 import { emmetHTML, emmetCSS } from "emmet-monaco-es";
 import cssFormatMonaco from "css-format-monaco";
 //
-import { defaultSettings, getEditorSettings, setEditorSettings } from "lib/editor/settings";
 import { getGeneratedPageURL } from "lib/blob";
 //
-import Editor, { useMonaco } from "@monaco-editor/react";
+import Editor from "@monaco-editor/react";
 import EditorButtons from "./editor-buttons";
 import EditorSettings from "./editor-settings";
 import SplitPane from "components/editor/split-pane";
+import { useEditor } from "contexts/editor-context";
 
-export default function EditorComponent({ data, onSave }) {
-  const [file, setFile] = useState("html");
+export default function EditorComponent({ onSave }) {
   const [blobUrl, setBlobUrl] = useState("");
-  const [fileContent, setFileContent] = useState(data);
-  const [settings, setSettings] = useState({ ...defaultSettings });
   const [showSettings, setShowSettings] = useState(false);
   const [previewWidth, setPreviewWidth] = useState("split");
   const [reversedPositions, setReversedPositions] = useState(false);
-  const monaco = useMonaco();
+
+  const { file, settings, filesContent, setFilesContent } = useEditor();
+
+  const updatePreview = () => setBlobUrl(getGeneratedPageURL(filesContent));
+
   const handleEditorDidMount = () => {
     emmetHTML();
     emmetCSS();
     cssFormatMonaco();
+    updatePreview();
   };
-
-  const updatePreview = () => setBlobUrl(getGeneratedPageURL(fileContent));
 
   const handleEditorChange = (value: string) => {
-    setFileContent({ ...fileContent, [file]: value });
+    setFilesContent(value);
   };
-
-  useEffect(() => {
-    // set the url for the first time
-    updatePreview();
-
-    // replace the default settings with the saved ones
-    // if they exist
-    setSettings({ ...getEditorSettings() });
-  }, []);
-
-  useEffect(() => setEditorSettings(settings), [settings]);
 
   useEffect(() => {
     if (settings.reloadOnChange[file]) updatePreview();
@@ -51,7 +40,7 @@ export default function EditorComponent({ data, onSave }) {
     return () => {
       window.onkeydown = null;
     };
-  }, [fileContent]);
+  }, [filesContent]);
 
   const save = (e: KeyboardEvent) => {
     if (e.key === "s" && e.ctrlKey) {
@@ -62,14 +51,12 @@ export default function EditorComponent({ data, onSave }) {
 
   const handleDbSave = (e: MouseEvent) => {
     e.preventDefault();
-    onSave(fileContent);
+    onSave(filesContent);
   };
 
   return (
     <div className={s.editorPage}>
       <EditorButtons
-        file={file}
-        setFile={setFile}
         showSettings={showSettings}
         setShowSettings={setShowSettings}
         previewWidth={previewWidth}
@@ -78,11 +65,7 @@ export default function EditorComponent({ data, onSave }) {
         setReversedPositions={setReversedPositions}
         handleDbSave={handleDbSave}
       />
-      <EditorSettings
-        settings={settings}
-        setSettings={setSettings}
-        style={{ display: showSettings ? "block" : "none" }}
-      />
+      <EditorSettings style={{ display: showSettings ? "block" : "none" }} />
 
       <SplitPane
         style={{ height: "100%" }}
@@ -90,15 +73,16 @@ export default function EditorComponent({ data, onSave }) {
         reversedPositions={reversedPositions}
       >
         <Editor
-          theme={settings.darkTheme ? "vs-dark" : "vs-light"}
+          theme={settings.theme}
           onMount={handleEditorDidMount}
           onChange={handleEditorChange}
           path={file}
           defaultLanguage={file}
-          defaultValue={fileContent[file]}
+          defaultValue={filesContent[file]}
           options={settings.editorSettings}
         />
 
+        {/* This is all we need to preview the changes */}
         <iframe className={s.editorPreview} frameBorder="0" src={blobUrl} />
       </SplitPane>
     </div>

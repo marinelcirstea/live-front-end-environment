@@ -1,10 +1,10 @@
-import { SiJavascript } from "react-icons/si";
-import NavLink from "components/nav-link";
+// import { SiJavascript } from "react-icons/si";
+// import NavLink from "components/nav-link";
 
 const Features = () => {
   return (
     <section className="section">
-      <div className="features">
+      {/* <div className="features">
         <div className="feature">
           <div className="feature-icon">
             <SiJavascript size={64} />
@@ -22,7 +22,7 @@ const Features = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

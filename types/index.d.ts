@@ -1,9 +1,9 @@
 /**
  * @type Model: Mongoose Model or Object Interface
  */
-export type KeysOfModel<Model> = { [key in keyof Model]?: Model[key] };
+type KeysOfModel<Model> = { [key in keyof Model]?: Model[key] };
 
-export interface IProject {
+interface IProject {
   name: string;
   html: string;
   css: string;
@@ -12,6 +12,6 @@ export interface IProject {
   isPublic: boolean;
 }
 
-export interface IProjectModel extends IProject {
+interface IProjectModel extends IProject {
   _id: string;
 }

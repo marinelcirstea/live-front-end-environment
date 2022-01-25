@@ -1,9 +1,13 @@
+// This could use some refactoring.. when I have time..
+
+import { useEditor } from "contexts/editor-context";
 import s from "./editor-settings.module.css";
 
-function EditorSettings({ settings, setSettings, ...props }) {
-  const setReloadOnChange = (fileName) => {
+function EditorSettings({ ...props }) {
+  const { settings, setSettings } = useEditor();
+
+  const setReloadOnChange = (fileName: string) => {
     setSettings({
-      ...settings,
       reloadOnChange: {
         ...settings.reloadOnChange,
         [fileName]: !settings.reloadOnChange[fileName],
@@ -11,7 +15,7 @@ function EditorSettings({ settings, setSettings, ...props }) {
     });
   };
 
-  const setEditorSettings = (key, val = null) => {
+  const setEditorSettings = (key: string, val: any = null) => {
     setSettings({
       ...settings,
       editorSettings: {
@@ -63,14 +67,26 @@ function EditorSettings({ settings, setSettings, ...props }) {
       {/* EDITOR_CONFIG_START */}
       <h3>Editor config</h3>
       <div>
-        <label htmlFor="editorTheme">
+        <p>Theme</p>
+        <label htmlFor="editorDark">
           <input
-            type="checkbox"
-            id="editorTheme"
-            checked={settings.darkTheme}
-            onChange={() => setSettings({ ...settings, darkTheme: !settings.darkTheme })}
+            type="radio"
+            id="editorDark"
+            checked={settings.theme === "vs-dark"}
+            onChange={() => setSettings({ theme: "vs-dark" })}
+            style={{ marginRight: "5px" }}
           />
-          Dark Theme
+          Dark
+        </label>
+        <label htmlFor="editorLight">
+          <input
+            type="radio"
+            id="editorLight"
+            checked={settings.theme === "vs-light"}
+            onChange={() => setSettings({ theme: "vs-light" })}
+            style={{ marginLeft: "10px", marginRight: "5px" }}
+          />
+          Light
         </label>
       </div>
       <div>

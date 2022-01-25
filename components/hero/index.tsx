@@ -31,7 +31,7 @@ const Hero = () => {
         </div>
 
         <div className={s.heroCta}>
-          <NavLink href="/components/new">Start coding, it's free</NavLink>
+          <NavLink href="/components/new">Start coding, it&apos;s free</NavLink>
         </div>
       </div>
     </section>

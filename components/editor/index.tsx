@@ -25,9 +25,6 @@ export default function EditorComponent({ data, onSave }) {
     emmetHTML();
     emmetCSS();
     cssFormatMonaco();
-    monaco.editor.getModels().forEach((model) => {
-      model.updateOptions({ tabSize: 2 });
-    });
   };
 
   const updatePreview = () => setBlobUrl(getGeneratedPageURL(fileContent));

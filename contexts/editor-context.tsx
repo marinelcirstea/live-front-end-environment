@@ -1,18 +1,18 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 
 const EditorContext = createContext({
   html: null,
   css: null,
   javascript: null,
-  setHtml: () => {},
-  setCss: () => {},
-  setJavascript: () => {},
+  setHtml: (str: string) => {},
+  setCss: (str: string) => {},
+  setJavascript: (str: string) => {},
 });
 
 const EditorProvider = ({ children }) => {
-  const [html, setHtml] = useState(null);
-  const [css, setCss] = useState(null);
-  const [javascript, setJavascript] = useState(null);
+  const [html, setHtml] = useState("");
+  const [css, setCss] = useState("");
+  const [javascript, setJavascript] = useState("");
 
   // useEffect(() => {
 

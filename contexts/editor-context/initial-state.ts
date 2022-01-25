@@ -1,5 +1,3 @@
-import { ISettings, State } from "./types";
-
 const editorDefaultFileValues = {
   javascript: `console.log('Hello, world!');`,
   css: `@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");

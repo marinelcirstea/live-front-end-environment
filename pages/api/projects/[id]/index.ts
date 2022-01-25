@@ -1,7 +1,6 @@
 import { extractProjectEntity } from "lib/project-entity";
 import dbConnect from "services/dbConnect";
 import Project from "models/project-model";
-import { IProjectModel } from "types";
 
 const handler = async (req, res) => {
   await dbConnect();

@@ -6,7 +6,6 @@ import captain from "lib/captain";
 import { useAuth } from "contexts/auth-context";
 import { getProject } from "lib/project-utils";
 import { useEditor } from "contexts/editor-context";
-import { IProjectModel } from "types";
 
 function EditProjectPage() {
   const [project, setProject] = useState<IProjectModel>(null);

@@ -1,5 +1,3 @@
-import { IProject } from "types";
-
 export function extractProjectEntity({ author, name, html, css, javascript, isPublic }: IProject) {
   const pieces: IProject = { author, name, html, css, javascript, isPublic };
 

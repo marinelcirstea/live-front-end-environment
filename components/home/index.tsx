@@ -29,7 +29,12 @@ const HomeComponent = () => {
         </nav>
         <div className={s.authButtons}>
           {user ? (
-            <div>{user.displayName}</div>
+            <>
+              <div>{user.displayName}</div>
+              <span className="button" onClick={() => logout()}>
+                Logout
+              </span>
+            </>
           ) : (
             <span className="button" onClick={() => login()}>
               Login

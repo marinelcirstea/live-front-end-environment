@@ -1,9 +1,8 @@
 import { extractProjectEntity } from "lib/project-entity";
 import dbConnect from "services/dbConnect";
 import Project from "models/project-model";
-import type { NextApiHandler } from "next";
 
-const handler: NextApiHandler = async (req: any, res: any) => {
+const handler = async (req, res) => {
   await dbConnect();
 
   const id = req.query.id;

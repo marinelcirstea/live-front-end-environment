@@ -1,10 +1,8 @@
-import type { NextApiHandler } from "next";
-
 import { extractProjectEntity } from "lib/project-entity";
 import dbConnect from "services/dbConnect";
 import Project from "models/project-model";
 
-const handler: NextApiHandler = async (req: any, res: any) => {
+const handler = async (req, res) => {
   await dbConnect();
 
   switch (req.method) {

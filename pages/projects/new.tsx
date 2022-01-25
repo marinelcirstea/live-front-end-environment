@@ -2,9 +2,7 @@ import EditorComponent from "components/editor";
 import { useAuth } from "contexts/auth-context";
 import { useToast } from "contexts/toast-context";
 import captain from "lib/captain";
-import { editorDefaultFileValues } from "lib/editor/default-file-values";
 import router from "next/router";
-import { IProject } from "types";
 
 function NewProjectPage() {
   const { user } = useAuth();
@@ -31,7 +29,7 @@ function NewProjectPage() {
     return router.push(`/projects/${data._id}`);
   };
 
-  return <EditorComponent data={editorDefaultFileValues} onSave={handleSave} />;
+  return <EditorComponent onSave={handleSave} />;
 }
 
 export default NewProjectPage;

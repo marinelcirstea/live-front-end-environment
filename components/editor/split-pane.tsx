@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { updateTooltip } from "../../lib/tooltip";
 import s from "./split-pane.module.css";
 
@@ -6,8 +6,8 @@ export default function SplitPane({ children, previewWidth, reversedPositions, .
   const [position, setPosition] = useState(0);
   const [maxWidth, setMaxWidth] = useState(0);
 
-  const handleChange = (e) => {
-    setPosition(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPosition(parseInt(e.currentTarget.value));
   };
 
   useEffect(() => {
@@ -47,7 +47,6 @@ export default function SplitPane({ children, previewWidth, reversedPositions, .
           value={position}
           className={s.splitSlider}
           onChange={handleChange}
-          data-tooltip={"0"}
           onMouseOver={() => updateTooltip(`${maxWidth - position} px`)}
           style={{ transform: reversedPositions ? `rotate(180deg)` : "initial" }}
         />
@@ -63,7 +62,6 @@ export default function SplitPane({ children, previewWidth, reversedPositions, .
           {children[1]}
         </div>
       </div>
-      {/* <p className="tooltip"></p> */}
     </div>
   );
 }

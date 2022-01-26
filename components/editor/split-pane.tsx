@@ -39,7 +39,7 @@ export default function SplitPane({ children, previewWidth, reversedPositions, .
 
   return (
     <div {...props} className={s.splitContainer}>
-      <div>
+      <div className={s.sliderContainer}>
         <input
           type="range"
           min={0}

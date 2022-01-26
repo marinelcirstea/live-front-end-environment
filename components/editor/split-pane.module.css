@@ -2,10 +2,18 @@
   display: flex;
   flex-direction: column;
 }
-
+.sliderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 5px auto 0 auto;
+}
 .splitSlider {
   width: 100%;
   cursor: col-resize;
+  height: 3px;
+  margin-bottom: 10px;
 }
 
 .split {

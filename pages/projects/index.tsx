@@ -6,25 +6,23 @@ import { useToast } from "contexts/toast-context";
 
 function AllComponentsPage() {
   const [projects, setProjects] = useState([]);
-  const [error, setError] = useState("loading");
+  const [loading, setLoading] = useState(true);
   const toast = useToast();
   useEffect(() => {
     (async () => {
       const res = await fetch("/api/projects");
       if (!res.ok) {
-        // setError("Something went wrong. Please refresh the page.");
         toast.error("Something went wrong. Please refresh the page.");
       }
       const data = await res.json();
       setProjects(data);
-      setError("");
+      setLoading(false);
     })();
   }, []);
 
   return (
     <>
-      {error === "loading" && <Loading />}
-      <p>{error}</p>
+      {loading && <Loading />}
       <PList>
         {projects[0] &&
           projects.map((project) => {

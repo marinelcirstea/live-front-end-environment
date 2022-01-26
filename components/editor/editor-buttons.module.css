@@ -16,7 +16,7 @@
 
 .header .text p {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .leftButtons {
@@ -25,11 +25,24 @@
   justify-content: flex-start;
   column-gap: 5px;
   padding: 0 10px;
+  font-size: 14px;
+  font-weight: 500;
   flex: 1;
 }
-.leftButtons button {
-  font-size: 24px;
+/* .leftButtons button {
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+.leftButtons button span {
+  /* display: block; */
+  /* font-size: 14px; */
+  /* font-weight: 500; */
+  /* cursor: pointer; */
+  margin-left: 5px;
 }
 
 .rightButtons {
@@ -54,8 +67,8 @@
   padding: 0.125rem 0.35rem;
 }
 .header button svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 .header button:disabled svg {
   fill: blue;

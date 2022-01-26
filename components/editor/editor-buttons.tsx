@@ -93,12 +93,12 @@ function EditorButtons({
 
         {/* SAVE_TO_DB */}
         <button title="Save to DB" onClick={handleDbSave}>
-          <AiOutlineSave />
+          <AiOutlineSave /> <span>Save project</span>
         </button>
         {/* SAVE_TO_DB_END */}
       </div>
 
-      <div className="text">
+      <div className={s.text}>
         <p>CTRL + S to update preview / ALT + Shift + F to format</p>
       </div>
 

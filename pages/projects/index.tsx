@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import Project, { PList } from "components/p";
 import Loading from "components/loading";
 import { useToast } from "contexts/toast-context";
+import { IProjectModel } from "types";
 
-function AllComponentsPage() {
-  const [projects, setProjects] = useState([]);
+function AllProjectsPage() {
+  const [projects, setProjects] = useState<IProjectModel[]>([]);
   const [loading, setLoading] = useState(true);
   const toast = useToast();
   useEffect(() => {
@@ -18,6 +19,7 @@ function AllComponentsPage() {
       setProjects(data);
       setLoading(false);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -35,4 +37,4 @@ function AllComponentsPage() {
   );
 }
 
-export default AllComponentsPage;
+export default AllProjectsPage;

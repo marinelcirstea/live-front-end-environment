@@ -1,5 +1,6 @@
 .toasts {
   position: fixed;
+  z-index: 9999;
   right: 30px;
   bottom: 30px;
   width: 80%;

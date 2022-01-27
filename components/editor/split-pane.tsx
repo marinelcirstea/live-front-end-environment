@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { updateTooltip } from "../../lib/tooltip";
 import s from "./split-pane.module.css";
 
 export default function SplitPane({ children, previewWidth, reversedPositions, ...props }) {
   const [position, setPosition] = useState(0);
   const [maxWidth, setMaxWidth] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPosition(parseInt(e.currentTarget.value));
+  const handleResize = () => {
+    setIsDragging(true);
+    window.onmouseup = clearListener;
+    window.onmousemove = (e: MouseEvent) => {
+      setPosition(reversedPositions ? maxWidth - e.clientX : e.clientX);
+    };
   };
 
-  useEffect(() => {
-    updateTooltip(`${maxWidth - position}px`);
-  }, [position]);
+  // cleanup
+  const clearListener = () => {
+    setIsDragging(false);
+    window.onmousemove = null;
+    window.onmouseup = null;
+  };
 
   useEffect(() => {
     const width =
@@ -39,27 +46,31 @@ export default function SplitPane({ children, previewWidth, reversedPositions, .
 
   return (
     <div {...props} className={s.splitContainer}>
-      <div className={s.sliderContainer}>
-        <input
-          type="range"
-          min={0}
-          max={maxWidth}
-          value={position}
-          className={s.splitSlider}
-          onChange={handleChange}
-          onMouseOver={() => updateTooltip(`${maxWidth - position} px`)}
-          style={{ transform: reversedPositions ? `rotate(180deg)` : "initial" }}
-        />
-      </div>
       <div className={s.split}>
         <div
           className={s.splitLeft}
-          style={{ width: `${position}px`, order: reversedPositions ? 1 : 0 }}
+          style={{ width: `${position}px`, order: reversedPositions ? 2 : 0 }}
         >
           {children[0]}
         </div>
-        <div className={s.splitRight} style={{ width: `${maxWidth - position}px` }}>
+        <div className={s.resizer} onMouseDown={handleResize} style={{ order: 1 }}></div>
+        <div
+          className={s.splitRight}
+          style={{ width: `${maxWidth - position}px`, order: reversedPositions ? 0 : 2 }}
+        >
+          {/* <div className={s.outputContainer}> */}
+          {/*
+           * This is needed if the mouse gets over the frame when dragging
+           * because the mouse context will change on to the iframe
+           * and the 'move' event will be lost in our context.
+           *
+           * To fix it, we need to drag something from our context over the iframe.
+           * In this case, a span. At least we can use it to show the width.
+           */}
+          <span style={{ zIndex: isDragging ? 10 : -1 }}>{maxWidth - position}px</span>
+
           {children[1]}
+          {/* </div> */}
         </div>
       </div>
     </div>

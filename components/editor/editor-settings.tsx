@@ -28,7 +28,9 @@ function EditorSettings({ ...props }) {
   return (
     <div className={s.settings} {...props}>
       {/* RELOAD_ON_CHANGE_START */}
+
       <h3>Reload On Change:</h3>
+
       <div>
         <label htmlFor="reloadJsOnChange">
           <input
@@ -40,6 +42,7 @@ function EditorSettings({ ...props }) {
           JavaScript
         </label>
       </div>
+
       <div>
         <label htmlFor="reloadCssOnChange">
           <input
@@ -51,6 +54,7 @@ function EditorSettings({ ...props }) {
           CSS
         </label>
       </div>
+
       <div>
         <label htmlFor="reloadHtmlOnChange">
           <input
@@ -66,6 +70,7 @@ function EditorSettings({ ...props }) {
 
       {/* EDITOR_CONFIG_START */}
       <h3>Editor config</h3>
+
       <div>
         <p>Theme</p>
         <label htmlFor="editorDark">
@@ -78,6 +83,7 @@ function EditorSettings({ ...props }) {
           />
           Dark
         </label>
+
         <label htmlFor="editorLight">
           <input
             type="radio"
@@ -89,6 +95,7 @@ function EditorSettings({ ...props }) {
           Light
         </label>
       </div>
+
       <div>
         <label htmlFor="editorMinimap">
           <input
@@ -102,6 +109,7 @@ function EditorSettings({ ...props }) {
           Minimap
         </label>
       </div>
+
       <div>
         <label htmlFor="editorWordWrap">
           <input
@@ -118,6 +126,7 @@ function EditorSettings({ ...props }) {
           Word Wrap
         </label>
       </div>
+
       <div>
         <label htmlFor="editorFormatOnType">
           <input
@@ -129,6 +138,7 @@ function EditorSettings({ ...props }) {
           Format on type
         </label>
       </div>
+
       <div>
         <label htmlFor="editorFormatOnPaste">
           <input

@@ -7,6 +7,7 @@ import { useAuth } from "contexts/auth-context";
 import { getProject } from "lib/project-utils";
 import { useEditor } from "contexts/editor-context";
 import { IProjectModel } from "types";
+import { IFilesContent } from "contexts/editor-context/types";
 
 function EditProjectPage() {
   const [project, setProject] = useState<IProjectModel>(null);
@@ -24,6 +25,7 @@ function EditProjectPage() {
 
       setProject(data);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
@@ -31,11 +33,11 @@ function EditProjectPage() {
       const { html, css, javascript } = project;
       setFilesContent({ html, css, javascript });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [project]);
 
-  const handleSave = async (filesData) => {
+  const handleSave = async (filesContent: IFilesContent) => {
     if (!user) {
-      // TODO: show login modal
       return toast.error("You must be logged in to save a project");
     }
 
@@ -43,7 +45,7 @@ function EditProjectPage() {
     // create a new project with the user's changes
     // and redirect him there
     if (user.uid !== project.author) {
-      const { data, ok } = await captain.post(`/api/projects`, filesData);
+      const { data, ok } = await captain.post(`/api/projects`, filesContent);
 
       if (!ok) return toast.error("Failed to save project");
 
@@ -51,7 +53,7 @@ function EditProjectPage() {
     }
 
     // if the user is the author, save the changes
-    const { ok } = await captain.put(`/api/projects/${id}`, filesData);
+    const { ok } = await captain.put(`/api/projects/${id}`, filesContent);
 
     if (!ok) return toast.error("Failed to update project");
 

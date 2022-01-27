@@ -1,0 +1,33 @@
+.footer {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.previewSettingsButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 0.125rem 0.5rem;
+}
+.previewSettingsButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.previewSettingsButton:disabled svg {
+  fill: #555;
+}
+
+.rightButtons {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}

@@ -7,10 +7,11 @@ import cssFormatMonaco from "css-format-monaco";
 import { getGeneratedPageURL } from "lib/blob";
 //
 import Editor from "@monaco-editor/react";
-import EditorButtons from "./editor-buttons";
+import EditorHeader from "./editor-header";
 import EditorSettings from "./editor-settings";
 import SplitPane from "components/editor/split-pane";
 import { useEditor } from "contexts/editor-context";
+import EditorPageFooter from "./editor-footer";
 
 export default function EditorComponent({ onSave }) {
   const [blobUrl, setBlobUrl] = useState("");
@@ -35,12 +36,14 @@ export default function EditorComponent({ onSave }) {
 
   useEffect(() => {
     if (settings.reloadOnChange[file]) updatePreview();
-
-    window.onkeydown = save;
-    return () => {
-      window.onkeydown = null;
-    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filesContent]);
+
+  useEffect(() => {
+    window.onkeydown = save;
+
+    return () => (window.onkeydown = null);
+  });
 
   const save = (e: KeyboardEvent) => {
     if (e.key === "s" && e.ctrlKey) {
@@ -49,22 +52,11 @@ export default function EditorComponent({ onSave }) {
     }
   };
 
-  const handleDbSave = (e: MouseEvent) => {
-    e.preventDefault();
-    onSave(filesContent);
-  };
+  const handleDbSave = () => onSave(filesContent);
 
   return (
     <div className={s.editorPage}>
-      <EditorButtons
-        showSettings={showSettings}
-        setShowSettings={setShowSettings}
-        previewWidth={previewWidth}
-        setPreviewWidth={setPreviewWidth}
-        reversedPositions={reversedPositions}
-        setReversedPositions={setReversedPositions}
-        handleDbSave={handleDbSave}
-      />
+      <EditorHeader handleDbSave={handleDbSave} />
       <EditorSettings style={{ display: showSettings ? "block" : "none" }} />
 
       <SplitPane
@@ -85,6 +77,14 @@ export default function EditorComponent({ onSave }) {
         {/* This is all we need to preview the changes */}
         <iframe className={s.editorPreview} frameBorder="0" src={blobUrl} />
       </SplitPane>
+      <EditorPageFooter
+        showSettings={showSettings}
+        setShowSettings={setShowSettings}
+        previewWidth={previewWidth}
+        setPreviewWidth={setPreviewWidth}
+        reversedPositions={reversedPositions}
+        setReversedPositions={setReversedPositions}
+      />
     </div>
   );
 }

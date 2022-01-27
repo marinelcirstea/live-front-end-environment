@@ -35,16 +35,16 @@
   cursor: pointer;
   padding: 6px;
   width: 120px;
-  background-color: #1e1e1e;
-  border: none;
-  color: inherit;
   font-size: 12px;
   font-weight: 600;
+  background-color: #1e1e1e70;
+  color: rgba(255, 255, 255, 0.2);
+  border: none;
   border-top: 2px solid transparent;
 }
 .pageButtons button:disabled {
-  background-color: #1e1e1e70;
-  color: rgba(255, 255, 255, 0.2);
+  color: inherit;
+  background-color: #1e1e1e;
   border-color: rgba(172, 255, 47, 0.5);
 }
 .pageButtons button span {
